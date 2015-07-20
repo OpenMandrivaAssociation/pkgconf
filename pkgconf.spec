@@ -35,20 +35,8 @@ on improving pkg-config for embedded use.
 %install
 %makeinstall_std
 
-%if "%{_lib}" != "lib"
-mkdir -p %{buildroot}%{_prefix}/lib/pkgconfig
-ln -s ../../lib/pkgconfig %{buildroot}%{_libdir}/pkgconfig/32
-%endif
-
 %check
 %make check
 
 %files
 %doc AUTHORS COPYING README.md
-
-%if "%{_lib}" != "lib"
-%{_prefix}/lib/pkgconfig
-%{_libdir}/pkgconfig/32
-%endif
-
-
