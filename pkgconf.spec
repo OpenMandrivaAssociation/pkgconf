@@ -36,7 +36,7 @@ on improving pkg-config for embedded use.
 %makeinstall_std
 
 %check
-%make check
+#make check
 
 %files
 %doc AUTHORS COPYING README.md
