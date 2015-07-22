@@ -35,8 +35,14 @@ on improving pkg-config for embedded use.
 %install
 %makeinstall_std
 
+# (tpg) enable it when we obsolete pkg-config
+#ln -sf %{_bindir}/pkgconf %{buildroot}%{_bindir}/pkg-config
+
 %check
 #make check
 
 %files
 %doc AUTHORS COPYING README.md
+%{_bindir}/pkgconf
+%{_datadir}/aclocal/pkg.m4
+%{_mandir}/man1/pkgconf.1.*
