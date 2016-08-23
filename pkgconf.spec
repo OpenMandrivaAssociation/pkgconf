@@ -1,11 +1,12 @@
 Summary:	An API-driven pkg-config replacement
 Name:		pkgconf
 Version:	0.9.12
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Development/Other
 Url:		https://github.com/pkgconf
 Source0:	http://rabbit.dereferenced.org/~nenolod/distfiles/%{name}-%{version}.tar.bz2
+Patch0:		pkgconf-0.9.12-print-provides.patch
 # (fhimpe) Otherwise packages with pc files having
 # Requires: pkg-config > X are not installable
 Provides:	pkgconfig(pkg-config) = 0.29.2
@@ -27,6 +28,7 @@ on improving pkg-config for embedded use.
 
 %prep
 %setup -q
+%apply_patches
 
 %build
 %configure \
