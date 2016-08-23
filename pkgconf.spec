@@ -9,6 +9,7 @@ Source0:	http://rabbit.dereferenced.org/~nenolod/distfiles/%{name}-%{version}.ta
 # (fhimpe) Otherwise packages with pc files having
 # Requires: pkg-config > X are not installable
 Provides:	pkgconfig(pkg-config) = 0.29.2
+Obsoletes:	pkgconfig(pkg-config) < 0.29.2
 Provides:	pkgconfig = 0.29.2
 Obsoletes:	pkgconfig < 0.29.2
 
