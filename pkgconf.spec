@@ -44,7 +44,7 @@ on improving pkg-config for embedded use.
 # (tpg) enable it when we obsolete pkg-config
 # these compat links and direcotries are needed
 ln -sf %{_bindir}/pkgconf %{buildroot}%{_bindir}/pkg-config
-ln -sf %{_bindir}/pkgconf %{buildroot}%{_bindir}/%{_target}-pkg-config
+ln -sf %{_bindir}/pkgconf %{buildroot}%{_bindir}/%{_target_platform}-pkg-config
 
 mkdir -p %{buildroot}%{_libdir}/pkgconfig
 %if "%{_lib}" != "lib"
@@ -58,6 +58,7 @@ mkdir -p %{buildroot}%{_datadir}/pkgconfig
 %doc AUTHORS COPYING README.md
 %{_bindir}/pkgconf
 %{_bindir}/pkg-config
+%{_bindir}/%{_target_platform}-pkg-config
 %{_libdir}/pkgconfig
 %if "%{_lib}" != "lib"
 %{_prefix}/lib/pkgconfig
