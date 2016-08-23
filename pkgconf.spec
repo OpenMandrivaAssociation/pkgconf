@@ -8,10 +8,9 @@ Url:		https://github.com/pkgconf
 Source0:	http://rabbit.dereferenced.org/~nenolod/distfiles/%{name}-%{version}.tar.bz2
 # (fhimpe) Otherwise packages with pc files having
 # Requires: pkg-config > X are not installable
-Provides:	pkgconfig(pkg-config) = %{version}
-Provides:	pkgconfig(pkg-config) = 0.29.1-2
-Provides:	pkgconfig = 0.29.1-2
-Obsoletes:	pkgconfig <= 0.29.1-1
+Provides:	pkgconfig(pkg-config) = 0.29.2
+Provides:	pkgconfig = 0.29.2
+Obsoletes:	pkgconfig < 0.29.2
 
 %description
 pkgconf is a program which helps to configure compiler
