@@ -10,8 +10,10 @@ Source0:	http://rabbit.dereferenced.org/~nenolod/distfiles/%{name}-%{version}.ta
 # Requires: pkg-config > X are not installable
 Provides:	pkgconfig(pkg-config) = 0.29.2
 Obsoletes:	pkgconfig(pkg-config) < 0.29.2
+Conflicts:	pkgconfig(pkg-config) < 0.29.2
 Provides:	pkgconfig = 0.29.2
 Obsoletes:	pkgconfig < 0.29.2
+Conflicts:	pkgconfig < 0.29.2
 
 %description
 pkgconf is a program which helps to configure compiler
