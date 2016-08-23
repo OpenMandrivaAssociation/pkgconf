@@ -59,11 +59,11 @@ mkdir -p %{buildroot}%{_datadir}/pkgconfig
 %{_bindir}/pkgconf
 %{_bindir}/pkg-config
 %{_bindir}/%{_target_platform}-pkg-config
-%{_libdir}/pkgconfig
+%dir %{_libdir}/pkgconfig
 %if "%{_lib}" != "lib"
-%{_prefix}/lib/pkgconfig
-%{_libdir}/pkgconfig/32
+%dir %{_prefix}/lib/pkgconfig
+%dir %{_libdir}/pkgconfig/32
 %endif
-%{_datadir}/pkgconfig
+%dir %{_datadir}/pkgconfig
 %{_datadir}/aclocal/pkg.m4
 %{_mandir}/man1/pkgconf.1.*
