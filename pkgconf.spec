@@ -1,3 +1,7 @@
+%define major 1
+%define libname %mklibname %{name} %{major}
+%define develname %mklibname %{name} -d
+
 Summary:	An API-driven pkg-config replacement
 Name:		pkgconf
 Version:	1.0.1
@@ -24,6 +28,18 @@ in the summer of 2011 to replace pkg-config, which for a
 while needed itself to build itself (they have since included 
 a 'stripped down copy of glib 2.0') Since then we have worked 
 on improving pkg-config for embedded use.
+
+%libpackage libpkgconf %{major}
+
+%package -n %{develname}
+Summary:	Header files and static libraries from %{name}
+Group:		Development/C
+Requires:	%{libname} = %{EVRD}
+Provides:	%{name}-devel = %{EVRD}
+
+%description -n %{develname}
+Libraries and includes files for
+developing programs based on %{name}.
 
 %prep
 %setup -q
@@ -70,3 +86,8 @@ mkdir -p %{buildroot}%{_datadir}/pkgconfig
 %dir %{_datadir}/pkgconfig
 %{_datadir}/aclocal/pkg.m4
 %{_mandir}/man1/pkgconf.1.*
+
+%files -n %{develname}
+%dir %{_includedir}/%{name}
+%{_includedir}/%{name}/*.h
+%{_libdir}/lib%{name}.so
