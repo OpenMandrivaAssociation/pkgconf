@@ -29,7 +29,7 @@ while needed itself to build itself (they have since included
 a 'stripped down copy of glib 2.0') Since then we have worked 
 on improving pkg-config for embedded use.
 
-%libpackage libpkgconf %{major}
+%libpackage %{name} %{major}
 
 %package -n %{develname}
 Summary:	Header files and static libraries from %{name}
