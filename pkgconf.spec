@@ -1,4 +1,4 @@
-%define major 1
+%define major 2
 %define libname %mklibname %{name} %{major}
 %define develname %mklibname %{name} -d
 
@@ -91,5 +91,7 @@ mkdir -p %{buildroot}%{_datadir}/pkgconfig
 
 %files -n %{develname}
 %dir %{_includedir}/%{name}
-%{_includedir}/%{name}/*.h
+%dir %{_includedir}/%{name}/libpkgconf
+%{_includedir}/%{name}/libpkgconf/*.h
 %{_libdir}/lib%{name}.so
+%{_libdir}/pkgconfig/libpkgconf.pc
