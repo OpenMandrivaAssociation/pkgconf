@@ -55,9 +55,9 @@ developing programs based on %{name}.
 
 %make
 
-# (tpg) somehow -L/usr/lib is added and tests fails
-%check
-make check
+# (tpg) we do not have Kyua test framework
+#check
+#make check
 
 %install
 %makeinstall_std
