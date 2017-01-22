@@ -4,12 +4,12 @@
 
 Summary:	An API-driven pkg-config replacement
 Name:		pkgconf
-Version:	1.1.1
+Version:	1.2.0
 Release:	1
 License:	GPLv2+
 Group:		Development/Other
 Url:		https://github.com/pkgconf
-Source0:	http://rabbit.dereferenced.org/~nenolod/distfiles/%{name}-%{version}.tar.xz
+Source0:	https://distfiles.dereferenced.org/pkgconf/%{name}-%{version}.tar.xz
 # (fhimpe) Otherwise packages with pc files having
 # Requires: pkg-config > X are not installable
 Provides:	pkgconfig(pkg-config) = 0.29.2
