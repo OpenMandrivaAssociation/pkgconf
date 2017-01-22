@@ -45,8 +45,6 @@ developing programs based on %{name}.
 %setup -q
 %apply_patches
 
-./autogen.sh
-
 %build
 %configure \
 	--with-system-includedir=%{_includedir} \
