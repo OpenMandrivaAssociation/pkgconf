@@ -4,7 +4,7 @@
 
 Summary:	An API-driven pkg-config replacement
 Name:		pkgconf
-Version:	1.3.3
+Version:	1.3.4
 Release:	1
 License:	GPLv2+
 Group:		Development/Other
