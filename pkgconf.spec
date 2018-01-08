@@ -1,4 +1,4 @@
-%define major 2
+%define major 3
 %define libname %mklibname %{name} %{major}
 %define develname %mklibname %{name} -d
 
@@ -86,6 +86,8 @@ mkdir -p %{buildroot}%{_datadir}/pkgconfig
 %dir %{_datadir}/pkgconfig
 %{_datadir}/aclocal/pkg.m4
 %{_mandir}/man1/pkgconf.1.*
+%{_mandir}/man5/pc.*
+%{_mandir}/man7/pkg.m4.*
 
 %files -n %{develname}
 %dir %{_includedir}/%{name}
