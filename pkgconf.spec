@@ -43,7 +43,7 @@ developing programs based on %{name}.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 %build
 %configure \
@@ -51,14 +51,14 @@ developing programs based on %{name}.
 	--with-system-libdir=%{_libdir} \
 	--with-pkg-config-dir="%{_libdir}/pkgconfig:%{_datadir}/pkgconfig"
 
-%make
+%make_build
 
 # (tpg) we do not have Kyua test framework
 #check
 #make check
 
 %install
-%makeinstall_std
+%make_install
 
 # (tpg) enable it when we obsolete pkg-config
 # these compat links and direcotries are needed
@@ -81,7 +81,7 @@ mkdir -p %{buildroot}%{_datadir}/pkgconfig
 %dir %{_libdir}/pkgconfig
 %if "%{_lib}" != "lib"
 %dir %{_prefix}/lib/pkgconfig
-%dir %{_libdir}/pkgconfig/32
+%{_libdir}/pkgconfig/32
 %endif
 %dir %{_datadir}/pkgconfig
 %{_datadir}/aclocal/pkg.m4
