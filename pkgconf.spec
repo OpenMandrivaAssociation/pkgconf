@@ -87,6 +87,7 @@ mkdir -p %{buildroot}%{_datadir}/pkgconfig
 %{_datadir}/aclocal/pkg.m4
 %{_mandir}/man1/pkgconf.1.*
 %{_mandir}/man5/pc.*
+%{_mandir}/man5/pkgconf-personality.5.*
 %{_mandir}/man7/pkg.m4.*
 
 %files -n %{develname}
