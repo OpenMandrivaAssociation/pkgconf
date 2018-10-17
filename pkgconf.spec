@@ -4,7 +4,7 @@
 
 Summary:	An API-driven pkg-config replacement
 Name:		pkgconf
-Version:	1.5.3
+Version:	1.5.4
 Release:	1
 License:	GPLv2+
 Group:		Development/Other
@@ -42,8 +42,7 @@ Libraries and includes files for
 developing programs based on %{name}.
 
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
 
 %build
 %configure \
