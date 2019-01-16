@@ -4,8 +4,8 @@
 
 Summary:	An API-driven pkg-config replacement
 Name:		pkgconf
-Version:	1.5.4
-Release:	2
+Version:	1.6.0
+Release:	1
 License:	GPLv2+
 Group:		Development/Other
 Url:		https://github.com/pkgconf
