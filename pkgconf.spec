@@ -10,7 +10,6 @@ License:	GPLv2+
 Group:		Development/Other
 Url:		https://github.com/pkgconf
 Source0:	https://distfiles.dereferenced.org/pkgconf/%{name}-%{version}.tar.xz
-BuildRequires:	meson
 # (fhimpe) Otherwise packages with pc files having
 # Requires: pkg-config > X are not installable
 Provides:	pkgconfig(pkg-config) = 0.29.2
@@ -46,11 +45,15 @@ developing programs based on %{name}.
 %autosetup -p1
 
 %build
-%meson -Dtests=false
-%meson_build
+%configure \
+	--with-system-includedir=%{_includedir} \
+	--with-system-libdir=%{_libdir} \
+	--with-pkg-config-dir="%{_libdir}/pkgconfig:%{_datadir}/pkgconfig"
+
+%make_build
 
 %install
-%meson_install
+%make_install
 
 # (tpg) enable it when we obsolete pkg-config
 # these compat links and direcotries are needed
