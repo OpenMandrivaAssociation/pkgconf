@@ -4,12 +4,13 @@
 
 Summary:	An API-driven pkg-config replacement
 Name:		pkgconf
-Version:	1.6.1
+Version:	1.6.3
 Release:	1
 License:	GPLv2+
 Group:		Development/Other
 Url:		https://github.com/pkgconf
 Source0:	https://distfiles.dereferenced.org/pkgconf/%{name}-%{version}.tar.xz
+BuildRequires:	meson
 # (fhimpe) Otherwise packages with pc files having
 # Requires: pkg-config > X are not installable
 Provides:	pkgconfig(pkg-config) = 0.29.2
@@ -45,19 +46,11 @@ developing programs based on %{name}.
 %autosetup -p1
 
 %build
-%configure \
-	--with-system-includedir=%{_includedir} \
-	--with-system-libdir=%{_libdir} \
-	--with-pkg-config-dir="%{_libdir}/pkgconfig:%{_datadir}/pkgconfig"
-
-%make_build
-
-# (tpg) we do not have Kyua test framework
-#check
-#make check
+%meson -Dtests=false
+%meson_build
 
 %install
-%make_install
+%meson_install
 
 # (tpg) enable it when we obsolete pkg-config
 # these compat links and direcotries are needed
