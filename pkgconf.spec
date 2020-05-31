@@ -4,7 +4,7 @@
 
 Summary:	An API-driven pkg-config replacement
 Name:		pkgconf
-Version:	1.7.2
+Version:	1.7.3
 Release:	1
 License:	GPLv2+
 Group:		Development/Other
@@ -13,8 +13,6 @@ Source0:	https://distfiles.dereferenced.org/pkgconf/%{name}-%{version}.tar.xz
 # (fhimpe) Otherwise packages with pc files having
 # Requires: pkg-config > X are not installable
 Provides:	pkgconfig(pkg-config) = 0.29.2
-Obsoletes:	pkgconfig(pkg-config) < 0.29.2
-Conflicts:	pkgconfig(pkg-config) < 0.29.2
 Provides:	pkgconfig = 0.29.2
 Obsoletes:	pkgconfig < 0.29.2
 Conflicts:	pkgconfig < 0.29.2
