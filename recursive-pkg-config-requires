@@ -1,0 +1,8 @@
+#!/bin/sh
+pc() {
+	pkg-config --print-requires --print-requires-private $1
+	pkg-config --print-requires --print-requires-private $1 |while read r; do
+		pc $r
+	done
+}
+pc $1 |sort |uniq

@@ -5,11 +5,14 @@
 Summary:	An API-driven pkg-config replacement
 Name:		pkgconf
 Version:	1.7.3
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Development/Other
 Url:		https://github.com/pkgconf
 Source0:	https://distfiles.dereferenced.org/pkgconf/%{name}-%{version}.tar.xz
+# Useful tool to quickly figure out all dependencies, direct
+# and indirect
+Source1:	recursive-pkg-config-requires
 # (fhimpe) Otherwise packages with pc files having
 # Requires: pkg-config > X are not installable
 Provides:	pkgconfig(pkg-config) = 0.29.2
@@ -41,13 +44,12 @@ developing programs based on %{name}.
 
 %prep
 %autosetup -p1
-
-%build
 %configure \
 	--with-system-includedir=%{_includedir} \
 	--with-system-libdir=%{_libdir} \
 	--with-pkg-config-dir="%{_libdir}/pkgconfig:%{_datadir}/pkgconfig"
 
+%build
 %make_build
 
 %install
@@ -66,11 +68,14 @@ ln -s ../../lib/pkgconfig %{buildroot}%{_libdir}/pkgconfig/32
 
 mkdir -p %{buildroot}%{_datadir}/pkgconfig
 
+install -c -m 755 %{S:1} %{buildroot}%{_bindir}/
+
 %files
 %doc AUTHORS COPYING README.md
 %{_bindir}/pkgconf
 %{_bindir}/pkg-config
 %{_bindir}/%{_target_platform}-pkg-config
+%{_bindir}/recursive-pkg-config-requires
 %dir %{_libdir}/pkgconfig
 %if "%{_lib}" != "lib"
 %dir %{_prefix}/lib/pkgconfig
