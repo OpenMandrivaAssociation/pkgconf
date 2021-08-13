@@ -4,7 +4,7 @@
 
 Summary:	An API-driven pkg-config replacement
 Name:		pkgconf
-Version:	1.7.4
+Version:	1.8.0
 Release:	1
 License:	GPLv2+
 Group:		Development/Other
@@ -83,10 +83,10 @@ install -c -m 755 %{S:1} %{buildroot}%{_bindir}/
 %endif
 %dir %{_datadir}/pkgconfig
 %{_datadir}/aclocal/pkg.m4
-%{_mandir}/man1/pkgconf.1.*
-%{_mandir}/man5/pc.*
-%{_mandir}/man5/pkgconf-personality.5.*
-%{_mandir}/man7/pkg.m4.*
+%doc %{_mandir}/man1/pkgconf.1.*
+%doc %{_mandir}/man5/pc.*
+%doc %{_mandir}/man5/pkgconf-personality.5.*
+%doc %{_mandir}/man7/pkg.m4.*
 
 %files -n %{develname}
 %dir %{_includedir}/%{name}
