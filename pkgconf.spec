@@ -5,7 +5,7 @@
 Summary:	An API-driven pkg-config replacement
 Name:		pkgconf
 Version:	1.8.0
-Release:	1
+Release:	3
 License:	GPLv2+
 Group:		Development/Other
 Url:		https://github.com/pkgconf
@@ -47,7 +47,7 @@ developing programs based on %{name}.
 %configure \
 	--with-system-includedir=%{_includedir} \
 	--with-system-libdir=%{_libdir} \
-	--with-pkg-config-dir="%{_libdir}/pkgconfig:%{_datadir}/pkgconfig"
+	--with-pkg-config-dir="%{_libdir}/pkgconfig:%{_datadir}/pkgconfig:%{_libdir}/qt6/lib/pkgconfig"
 
 %build
 %make_build
