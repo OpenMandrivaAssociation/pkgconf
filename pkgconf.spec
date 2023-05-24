@@ -1,11 +1,11 @@
-%define major 3
-%define libname %mklibname %{name} %{major}
+%define major 4
+%define libname %mklibname %{name}
 %define develname %mklibname %{name} -d
 
 Summary:	An API-driven pkg-config replacement
 Name:		pkgconf
-Version:	1.8.0
-Release:	4
+Version:	1.9.5
+Release:	1
 License:	GPLv2+
 Group:		Development/Other
 Url:		https://github.com/pkgconf
@@ -72,6 +72,7 @@ install -c -m 755 %{S:1} %{buildroot}%{_bindir}/
 
 %files
 %doc AUTHORS COPYING README.md
+%{_bindir}/bomtool
 %{_bindir}/pkgconf
 %{_bindir}/pkg-config
 %{_bindir}/%{_target_platform}-pkg-config
