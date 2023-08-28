@@ -5,7 +5,7 @@
 Summary:	An API-driven pkg-config replacement
 Name:		pkgconf
 Version:	2.0.2
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Development/Other
 Url:		https://github.com/pkgconf
@@ -19,6 +19,8 @@ Provides:	pkgconfig(pkg-config) = 0.29.2
 Provides:	pkgconfig = 0.29.2
 Obsoletes:	pkgconfig < 0.29.2
 Conflicts:	pkgconfig < 0.29.2
+Provides:	%{_bindir}/pkg-config
+Provides:	%{_bindir}/%{_target_platform}-pkg-config
 
 %description
 pkgconf is a program which helps to configure compiler
