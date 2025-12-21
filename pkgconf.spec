@@ -22,6 +22,11 @@ Conflicts:	pkgconfig < 0.29.2
 Provides:	%{_bindir}/pkg-config
 Provides:	%{_bindir}/%{_target_platform}-pkg-config
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 %description
 pkgconf is a program which helps to configure compiler
 and linker flags for development frameworks.
