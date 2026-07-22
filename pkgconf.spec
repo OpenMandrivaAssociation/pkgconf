@@ -1,10 +1,10 @@
-%define major 4
+%define major 8
 %define libname %mklibname %{name}
 %define develname %mklibname %{name} -d
 
 Summary:	An API-driven pkg-config replacement
 Name:		pkgconf
-Version:	2.1.1
+Version:	3.0.4
 Release:	1
 License:	GPLv2+
 Group:		Development/Other
@@ -22,11 +22,8 @@ Conflicts:	pkgconfig < 0.29.2
 Provides:	%{_bindir}/pkg-config
 Provides:	%{_bindir}/%{_target_platform}-pkg-config
 
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	libtool-base
-BuildRequires:	slibtool
-BuildRequires:	make
+BuildSystem:	meson
+
 %description
 pkgconf is a program which helps to configure compiler
 and linker flags for development frameworks.
@@ -49,19 +46,7 @@ Provides:	%{name}-devel = %{EVRD}
 Libraries and includes files for
 developing programs based on %{name}.
 
-%prep
-%autosetup -p1
-%configure \
-	--with-system-includedir=%{_includedir} \
-	--with-system-libdir=%{_libdir} \
-	--with-pkg-config-dir="%{_libdir}/pkgconfig:%{_datadir}/pkgconfig:%{_libdir}/qt6/lib/pkgconfig"
-
-%build
-%make_build
-
-%install
-%make_install
-
+%install -a
 # (tpg) enable it when we obsolete pkg-config
 # these compat links and direcotries are needed
 ln -sf %{_bindir}/pkgconf %{buildroot}%{_bindir}/pkg-config
@@ -80,10 +65,12 @@ install -c -m 755 %{S:1} %{buildroot}%{_bindir}/
 %files
 %doc AUTHORS COPYING README.md
 %{_bindir}/bomtool
+%{_bindir}/pccritic
 %{_bindir}/pkgconf
 %{_bindir}/pkg-config
 %{_bindir}/%{_target_platform}-pkg-config
 %{_bindir}/recursive-pkg-config-requires
+%{_bindir}/spdxtool
 %dir %{_libdir}/pkgconfig
 %if "%{_lib}" != "lib"
 %dir %{_prefix}/lib/pkgconfig
@@ -91,9 +78,12 @@ install -c -m 755 %{S:1} %{buildroot}%{_bindir}/
 %endif
 %dir %{_datadir}/pkgconfig
 %{_datadir}/aclocal/pkg.m4
-%doc %{_mandir}/man1/pkgconf.1.*
+%doc %{_mandir}/man1/bomtool.1*
+%doc %{_mandir}/man1/pccritic.1*
+%doc %{_mandir}/man1/pkgconf.1*
+%doc %{_mandir}/man1/spdxtool.1*
 %doc %{_mandir}/man5/pc.*
-%doc %{_mandir}/man5/pkgconf-personality.5.*
+%doc %{_mandir}/man5/pkgconf-personality.5*
 %doc %{_mandir}/man7/pkg.m4.*
 
 %files -n %{develname}
