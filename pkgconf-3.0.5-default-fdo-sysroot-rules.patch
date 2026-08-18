@@ -1,0 +1,86 @@
+diff -ruN a/cli/core.c b/cli/core.c
+--- a/cli/core.c	2026-08-02 02:39:02.000000000 +0200
++++ b/cli/core.c	2026-08-19 01:26:38.876492842 +0200
+@@ -1081,8 +1081,14 @@
+ 		state->want_render_ops = msvc_renderer_get();
+ #endif
+ 
+-	if (pkgconf_client_getenv(&state->pkg_client, "PKG_CONFIG_FDO_SYSROOT_RULES"))
+-		want_client_flags |= PKGCONF_PKG_PKGF_FDO_SYSROOT_RULES;
++	/* Default to FDO sysroot rules (do not prefix --variable with
++	 * SYSROOT). PKG_CONFIG_FDO_SYSROOT_RULES=0 restores 3.x prefixing.
++	 */
++	{
++		const char *fdo = pkgconf_client_getenv(&state->pkg_client, "PKG_CONFIG_FDO_SYSROOT_RULES");
++		if (fdo == NULL || strcmp(fdo, "0") != 0)
++			want_client_flags |= PKGCONF_PKG_PKGF_FDO_SYSROOT_RULES;
++	}
+ 
+ 	if (pkgconf_client_getenv(&state->pkg_client, "PKG_CONFIG_PKGCONF1_SYSROOT_RULES"))
+ 		want_client_flags |= PKGCONF_PKG_PKGF_PKGCONF1_SYSROOT_RULES;
+diff -ruN a/man/pkgconf.1 b/man/pkgconf.1
+--- a/man/pkgconf.1	2026-08-02 02:39:02.000000000 +0200
++++ b/man/pkgconf.1	2026-08-19 01:26:38.947110390 +0200
+@@ -685,7 +685,16 @@
+ .It Ev PKG_CONFIG_DONT_RELOCATE_PATHS
+ If set, disables the path relocation feature.
+ .It Ev PKG_CONFIG_FDO_SYSROOT_RULES
+-If set, follow the sysroot prefixing rules that freedesktop.org pkg-config uses.
++If unset or set to any value other than
++.Li 0 ,
++follow the sysroot prefixing rules that freedesktop.org pkg-config uses
++(do not prefix
++.Fl -variable
++results with
++.Ev PKG_CONFIG_SYSROOT_DIR ).
++Set to
++.Li 0
++to restore pkgconf 3.x sysroot prefixing of path-like variables.
+ .It Ev PKG_CONFIG_IGNORE_CONFLICTS
+ If set, ignore
+ .Ic Conflicts
+diff -ruN a/t/sysroot/default-fdo-sysroot-variable-not-rewritten.test b/t/sysroot/default-fdo-sysroot-variable-not-rewritten.test
+--- a/t/sysroot/default-fdo-sysroot-variable-not-rewritten.test	1970-01-01 01:00:00.000000000 +0100
++++ b/t/sysroot/default-fdo-sysroot-variable-not-rewritten.test	2026-08-19 01:30:10.627252842 +0200
+@@ -0,0 +1,5 @@
++Environment: PKG_CONFIG_SYSROOT_DIR=/sysroot
++PackageSearchPath: lib1
++Query: foo
++WantVariable: prefix
++ExpectedStdout: /test
+diff -ruN a/t/sysroot/explicit-sysroot.test b/t/sysroot/explicit-sysroot.test
+--- a/t/sysroot/explicit-sysroot.test	2026-08-02 02:39:02.000000000 +0200
++++ b/t/sysroot/explicit-sysroot.test	2026-08-19 01:26:38.977081739 +0200
+@@ -1,4 +1,5 @@
+ Environment: PKG_CONFIG_SYSROOT_DIR=%TEST_FIXTURES_DIR%
++Environment: PKG_CONFIG_FDO_SYSROOT_RULES=0
+ PackageSearchPath: lib1
+ WantVariable: pkgdatadir
+ Query: explicit-sysroot
+diff -ruN a/t/sysroot/no-pc_sysrootdir-rewriting-variable.test b/t/sysroot/no-pc_sysrootdir-rewriting-variable.test
+--- a/t/sysroot/no-pc_sysrootdir-rewriting-variable.test	2026-08-02 02:39:02.000000000 +0200
++++ b/t/sysroot/no-pc_sysrootdir-rewriting-variable.test	2026-08-19 01:26:38.981869213 +0200
+@@ -1,4 +1,5 @@
+ Environment: PKG_CONFIG_SYSROOT_DIR=/sysroot
++Environment: PKG_CONFIG_FDO_SYSROOT_RULES=0
+ PackageSearchPath: lib1
+ Query: explicit-sysroot
+ WantVariable: pkgdatadir
+diff -ruN a/t/sysroot/variable-rewriting-1.test b/t/sysroot/variable-rewriting-1.test
+--- a/t/sysroot/variable-rewriting-1.test	2026-08-02 02:39:02.000000000 +0200
++++ b/t/sysroot/variable-rewriting-1.test	2026-08-19 01:26:38.967711705 +0200
+@@ -1,4 +1,5 @@
+ Environment: PKG_CONFIG_SYSROOT_DIR=%TEST_FIXTURES_DIR%
++Environment: PKG_CONFIG_FDO_SYSROOT_RULES=0
+ PackageSearchPath: lib1
+ Query: foo
+ WantVariable: prefix
+diff -ruN a/t/sysroot/variable-rewriting-2.test b/t/sysroot/variable-rewriting-2.test
+--- a/t/sysroot/variable-rewriting-2.test	2026-08-02 02:39:02.000000000 +0200
++++ b/t/sysroot/variable-rewriting-2.test	2026-08-19 01:26:38.973074866 +0200
+@@ -1,4 +1,5 @@
+ Environment: PKG_CONFIG_SYSROOT_DIR=%TEST_FIXTURES_DIR%
++Environment: PKG_CONFIG_FDO_SYSROOT_RULES=0
+ PackageSearchPath: lib1
+ Query: foo
+ WantVariable: includedir
