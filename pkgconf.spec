@@ -2,10 +2,14 @@
 %define libname %mklibname %{name}
 %define develname %mklibname %{name} -d
 
+# Size over speed. PGO (at -O3 or -Oz) inlines the hot parser and
+# grows libpkgconf; putting -Oz last is what actually shrinks.
+%global optflags %{optflags} -Oz
+
 Summary:	An API-driven pkg-config replacement
 Name:		pkgconf
 Version:	3.0.7
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Development/Other
 Url:		https://github.com/pkgconf
