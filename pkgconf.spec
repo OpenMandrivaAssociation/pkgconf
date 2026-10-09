@@ -8,8 +8,8 @@
 
 Summary:	An API-driven pkg-config replacement
 Name:		pkgconf
-Version:	3.0.7
-Release:	2
+Version:	3.0.8
+Release:	1
 License:	GPLv2+
 Group:		Development/Other
 Url:		https://github.com/pkgconf
