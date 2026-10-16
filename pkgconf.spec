@@ -8,7 +8,7 @@
 
 Summary:	An API-driven pkg-config replacement
 Name:		pkgconf
-Version:	3.0.8
+Version:	3.0.9
 Release:	1
 License:	GPLv2+
 Group:		Development/Other
@@ -20,8 +20,6 @@ Source1:	recursive-pkg-config-requires
 # Default to FDO sysroot rules: --cflags/--libs still get SYSROOT on
 # -I/-L, but --variable (install dests) does not. =0 restores 3.x.
 Patch0:	pkgconf-3.0.7-default-fdo-sysroot-rules.patch
-# The 3.0.8 tarball omits this file. It is in the git tag.
-Patch1:	pkgconf-3.0.8-missing-test-util.patch
 # (fhimpe) Otherwise packages with pc files having
 # Requires: pkg-config > X are not installable
 Provides:	pkgconfig(pkg-config) = 0.29.2
