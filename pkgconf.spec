@@ -8,7 +8,7 @@
 
 Summary:	An API-driven pkg-config replacement
 Name:		pkgconf
-Version:	3.0.9
+Version:	3.0.10
 Release:	1
 License:	GPLv2+
 Group:		Development/Other
